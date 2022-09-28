@@ -13,6 +13,7 @@
         <maven.compiler.target>18</maven.compiler.target>
     </properties>
 
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -35,5 +36,4 @@
             <version>1.4.200</version>
         </dependency>
     </dependencies>
-
 </project>

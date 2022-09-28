@@ -1,31 +1,29 @@
 package ru.geekbrains.spring1.lesson6.hiber;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "products")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "title")
     private String title;
+
     @Column(name = "price")
     private Integer price;
 
-    public List<Customer> getCustomers() {
-        return customers;
-    }
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "products_buyers",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id")
     )
-    private List<Customer> customers;
+    List<Customer> customers;
 
     public Product() {
     }
@@ -35,6 +33,11 @@ public class Product {
         this.title = title;
         this.price = price;
     }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
 
     public Long getId() {
         return id;
@@ -58,5 +61,14 @@ public class Product {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

@@ -1,17 +1,15 @@
 package ru.geekbrains.spring1.lesson6.hiber;
 
 import org.hibernate.Session;
-import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-@Repository
-public class CustomerDaoImpl implements CustomerDao{
+public class ProductDaoImpl implements ProductDao{
 
     private SessionFactoryUtils sessionFactoryUtils;
 
-    public CustomerDaoImpl(SessionFactoryUtils sessionFactoryUtils){
+    public ProductDaoImpl(SessionFactoryUtils sessionFactoryUtils){
         this.sessionFactoryUtils = sessionFactoryUtils;
     }
 
@@ -21,13 +19,12 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
 
-
     @Override
-    public List<Product> findAll(Long id) {
+    public List<Customer> findAll(Long id) {
         try (Session session = sessionFactoryUtils.getSession()) {
             session.beginTransaction();
-            Customer customer = session.get(Customer.class, id);
-            List<Product> products = customer.getProducts();
+            Product product = session.get(Product.class, id);
+            List<Customer> products = product.getCustomers();
             session.getTransaction().commit();
             return products;
         }

@@ -9,4 +9,4 @@ INSERT INTO products (title, price) VALUES('Demon Souls', 10), ('Dark Souls', 80
 
 DROP TABLE IF EXISTS products_buyers CASCADE;
 CREATE TABLE products_buyers (product_id bigint, customer_id bigint, FOREIGN KEY (product_id) REFERENCES products (id), FOREIGN KEY (customer_id) REFERENCES customers (id));
-INSERT INTO products_buyers (product_id, customer_id) VALUES (1, 1), (2, 1), (3, 1), (1, 2), (1, 3), (2, 1), (2, 1), (3, 1), (1, 2);
+INSERT INTO products_buyers (product_id, customer_id) VALUES (1, 1), (1, 1);
